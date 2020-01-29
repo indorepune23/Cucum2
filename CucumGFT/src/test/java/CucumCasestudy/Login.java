@@ -16,7 +16,7 @@ import cucumber.api.java.en.When;
 public class Login {
 	
      WebDriver driver;
-     @Given("^users open homepage$")
+     @Given("^users open homepage1$")
  	public void userOpenTestMeApp() {
  		System.setProperty("webdriver.chrome.driver", "C:\\Drive2\\chromedriver_win32\\chromedriver.exe");
  		driver = new ChromeDriver();
@@ -25,7 +25,7 @@ public class Login {
  		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
  	}
 
-	@When("^user click on SignIn$")
+	@When("^user click on SignIn1$")
 	public void enterCredentials(DataTable dt) {
 		
 		driver.findElement(By.xpath("//a[@href='login.htm']")).click();
@@ -33,10 +33,16 @@ public class Login {
 		driver.findElement(By.id("userName")).sendKeys(cred.get(0));
 		driver.findElement(By.id("password")).sendKeys(cred.get(1));
 		driver.findElement(By.xpath("/html/body/main/div/div/div/form/fieldset/div[4]/div/input[1]")).click();
+		
 	}
-	@Then("^user should login$")
-	public void login() {
-		System.out.println("Login successfull");
+	@When("^user search for a product$")
+	public void searchProduct(DataTable dt) {
+		List<String> crd=dt.asList(String.class);
+	driver.findElement(By.id("myInput")).sendKeys(crd.get(0));
+	driver.findElement(By.xpath("/html/body/div[1]/form/input")).click();
 	}
-	
+	@Then("^user add to cart$")
+	public void add() {
+	driver.findElement(By.xpath("/html/body/section/div/div/div[2]/div/div/div/div[2]/center/a")).click();
+	}
 }

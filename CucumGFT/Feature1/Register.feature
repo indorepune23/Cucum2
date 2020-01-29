@@ -22,5 +22,14 @@ Scenario: Register on TestMeApp
 	Given users open homepage
 	When user click on SignIn
 	   |lalitha|Password123|
-	   Then user should login
+	 
+	   
+@Search
+Scenario: Search product
+	   Given users open homepage1
+	When user click on SignIn1
+	 |lalitha|Password123|
+	And user search for a product
+	|head|
+	Then user add to cart
 	
